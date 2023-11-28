@@ -12,12 +12,5 @@ services:
     environment:
       - PYTHONPATH="/app:${PYTHONPATH}"
 
-  jupyter:
-    image: jupyter/datascience-notebook
-    volumes:
-      - ./jupyter:/home/jovyan/work
-    environment:
-      - PYTHONPATH="/app:${PYTHONPATH}"
-
 volumes:
   conda:
