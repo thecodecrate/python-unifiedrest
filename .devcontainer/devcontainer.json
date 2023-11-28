@@ -1,0 +1,37 @@
+{
+  "name": "Library python-restclient",
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+    "../docker-compose.override.yml"
+  ],
+  "service": "python",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "mikestead.dotenv",
+        "ms-python.vscode-pylance",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "formulahendry.code-runner",
+        "ms-python.black-formatter",
+        "oderwat.indent-rainbow",
+        "ms-toolsai.jupyter",
+        "ms-python.isort",
+        "ms-python.debugpy"
+      ],
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "indentRainbow.indicatorStyle": "light",
+        "editor.formatOnSave": true,
+        "python.condaPath": "/opt/conda/bin/conda",
+        "python.defaultInterpreterPath": "/opt/conda/envs/myenv/bin/python",
+        "python.analysis.autoImportCompletions": true,
+        "python.analysis.typeCheckingMode": "strict",
+        "explorer.sortOrderLexicographicOptions": "upper"
+      }
+    }
+  }
+}

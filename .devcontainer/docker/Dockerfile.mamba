@@ -1,0 +1,42 @@
+# Use Ubuntu LTS as base image
+FROM ubuntu:23.04
+
+# The name of the Conda environment to create
+ARG CONDA_ENV_NAME=myenv
+ENV CONDA_ENV_NAME=${CONDA_ENV_NAME}
+
+# Install wget, git
+RUN apt-get update && apt-get install -y wget git
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Install Miniforge in /opt/conda
+RUN wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O /tmp/miniforge.sh \
+    && bash /tmp/miniforge.sh -b -p /opt/conda \
+    && rm /tmp/miniforge.sh
+
+# Update Mamba
+RUN /opt/conda/bin/mamba update -n base -c defaults mamba
+
+# Add Miniforge to PATH
+ENV PATH="/opt/conda/bin:$PATH"
+
+# Copy the environment.yml file from your host to the current location in the container (i.e., /app)
+COPY environment.yml .
+
+# Create Mamba environment
+RUN mamba env create -f environment.yml
+
+# Initialize Conda
+RUN mamba init bash
+
+# Activate environment when opening a terminal
+RUN echo "mamba activate ${CONDA_ENV_NAME}" >> ~/.bashrc
+
+# supervisord
+RUN apt-get install -y supervisor
+COPY ./.devcontainer/docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Set the entrypoint to supervisord
+ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
