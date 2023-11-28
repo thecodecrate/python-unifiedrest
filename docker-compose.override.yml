@@ -1,0 +1,14 @@
+services:
+  python:
+    container_name: lib-restclient-python
+
+  jupyter:
+    container_name: lib-restclient-jupyter
+    environment:
+      VIRTUAL_PORT: 8888
+      VIRTUAL_HOST: jupyter.local
+
+networks:
+  default:
+    name: shared_network
+    external: true

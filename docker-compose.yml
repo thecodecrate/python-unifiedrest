@@ -1,0 +1,23 @@
+services:
+  python:
+    build:
+      context: .
+      dockerfile: ./.devcontainer/docker/Dockerfile.mamba
+      args:
+        ENV_NAME: myenv
+    volumes:
+      - .:/app
+      - conda:/opt/conda
+    working_dir: /app
+    environment:
+      - PYTHONPATH="/app:${PYTHONPATH}"
+
+  jupyter:
+    image: jupyter/datascience-notebook
+    volumes:
+      - ./jupyter:/home/jovyan/work
+    environment:
+      - PYTHONPATH="/app:${PYTHONPATH}"
+
+volumes:
+  conda:
