@@ -9,8 +9,6 @@ services:
       - .:/app
       - conda:/opt/conda
     working_dir: /app
-    environment:
-      - PYTHONPATH="/app:${PYTHONPATH}"
 
 volumes:
   conda:

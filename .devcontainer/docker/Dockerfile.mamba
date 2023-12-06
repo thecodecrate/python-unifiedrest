@@ -5,6 +5,9 @@ FROM ubuntu:23.04
 ARG CONDA_ENV_NAME=myenv
 ENV CONDA_ENV_NAME=${CONDA_ENV_NAME}
 
+# Set the PYTHONPATH
+ENV PYTHONPATH=/app:$PYTHONPATH
+
 # Install wget, git
 RUN apt-get update && apt-get install -y wget git
 
