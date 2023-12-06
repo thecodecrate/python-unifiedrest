@@ -30,6 +30,7 @@
         "python.defaultInterpreterPath": "/opt/conda/envs/myenv/bin/python",
         "python.analysis.autoImportCompletions": true,
         "python.analysis.typeCheckingMode": "strict",
+        "python.analysis.diagnosticMode": "workspace",
         "explorer.sortOrderLexicographicOptions": "upper"
       }
     }
