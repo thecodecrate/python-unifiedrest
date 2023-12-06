@@ -1,6 +1,6 @@
 from typing import Generic, TypeVar
 
-from src.helpers.actions.core.action_dto.action_dto import ActionDTO
+from .action_dto import ActionDTO
 
 T = TypeVar("T")
 

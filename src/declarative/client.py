@@ -1,15 +1,14 @@
 from typing import Any, Optional
 
-from src.core.auth.auth_module_interface import AuthModuleInterface
-from src.core.driver.driver_interface import DriverInterface
-from src.core.module.module_collection import ModuleCollection
-from src.core.module.module_settings_dto import ModuleSettingsDTO
-from src.core.parser.parser_module_interface import ParserModuleInterface
-from src.core.runner.runner import Runner
-from src.core.serializer.serializer_module_interface import SerializerModuleInterface
-
+from ..core.auth.auth_module_interface import AuthModuleInterface
 from ..core.client.client import Client
 from ..core.client_settings.client_settings_dto import ClientSettingsDTO
+from ..core.driver.driver_interface import DriverInterface
+from ..core.module.module_collection import ModuleCollection
+from ..core.module.module_settings_dto import ModuleSettingsDTO
+from ..core.parser.parser_module_interface import ParserModuleInterface
+from ..core.runner.runner import Runner
+from ..core.serializer.serializer_module_interface import SerializerModuleInterface
 
 
 # syntax sugar: Client + ClientSettings in one class

@@ -1,15 +1,14 @@
 from typing import Any, Optional, Type, TypeVar
 
-from src.declarative.make_return_from_output_action.make_return_from_output_action import (
-    MakeReturnFromOutputAction,
-)
-
 from ..core.client.client import Client
 from ..core.helpers.constants.http_verbs import HttpVerbs
 from ..core.module.module_settings_dto import ModuleSettingsDTO
 from ..core.runner_request.runner_request_dto import RunnerRequestDTO
 from ..helpers.actions.core.action.action import Action
 from ..helpers.actions.core.action_dto.action_dto import ActionDTO
+from .make_return_from_output_action.make_return_from_output_action import (
+    MakeReturnFromOutputAction,
+)
 from .make_return_from_output_action.params_make_return_from_output import (
     ParamsMakeReturnFromOutput,
 )
