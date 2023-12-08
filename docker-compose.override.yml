@@ -1,8 +1,4 @@
-services:
-  python:
-    container_name: lib-restclient-python
-
-networks:
-  default:
-    name: shared_network
-    external: true
+# Use this file to override the default configuration of docker-compose.yml.
+# It allows for customizing the services, volumes, networks, and other settings specific to your development environment.
+#
+#
