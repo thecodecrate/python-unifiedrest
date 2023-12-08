@@ -97,3 +97,6 @@ Thumbs.db
 # IDE specific files
 .idea/
 *.swp
+
+# docker
+docker-compose.override.yml
