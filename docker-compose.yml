@@ -2,7 +2,7 @@ services:
   python:
     build:
       context: .
-      dockerfile: ./.devcontainer/docker/Dockerfile.mamba
+      dockerfile: ./docker/development/python/Dockerfile
       args:
         ENV_NAME: myenv
     volumes:
