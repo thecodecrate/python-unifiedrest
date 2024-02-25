@@ -11,7 +11,9 @@ from .serializer_json_settings import SerializerJsonSettings
 
 class SerializerJsonModule(SerializerModuleInterface):
     def may_add_json_headers(
-        self, settings_dto: SerializerJsonSettings, headers: HttpHeaders
+        self,
+        settings_dto: SerializerJsonSettings,
+        headers: HttpHeaders,
     ) -> None:
         if settings_dto.disable_json_headers:
             return
@@ -36,7 +38,7 @@ class SerializerJsonModule(SerializerModuleInterface):
         request.body = json.dumps(body_object)
 
     def before_run(self, request: RunnerRequestDTO[Any]) -> None:
-        settings_dto = cast(SerializerJsonSettings, request.module_settings)
+        settings_dto = cast(SerializerJsonSettings, request.client_modules_settings)
 
         self.may_add_json_headers(settings_dto=settings_dto, headers=request.headers)
 

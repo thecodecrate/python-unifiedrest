@@ -2,10 +2,12 @@ from pydantic import ConfigDict
 from typing import Any, Optional, Type
 
 from ..auth.auth_module_interface import AuthModuleInterface
+from ..client_modules_settings.client_modules_settings_dto import (
+    ClientModulesSettingsDTO,
+)
 from ..driver.driver_interface import DriverInterface
 from ...helpers.dto.dto import DTO
 from ..module.module_collection import ModuleCollection
-from ..module.module_settings_dto import ModuleSettingsDTO
 from ..parser.parser_module_interface import ParserModuleInterface
 from ..runner.runner import Runner
 from ..serializer.serializer_module_interface import SerializerModuleInterface
@@ -30,4 +32,6 @@ class ClientSettingsDTO(DTO):
 
     runner_class: Type[Runner] = Runner
 
-    module_settings_class: Type[ModuleSettingsDTO] = ModuleSettingsDTO
+    client_modules_settings_class: Type[ClientModulesSettingsDTO] = (
+        ClientModulesSettingsDTO
+    )

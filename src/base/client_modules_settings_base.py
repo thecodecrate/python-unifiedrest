@@ -3,7 +3,7 @@ from ..addons.serializers.json.serializer_json_settings import SerializerJsonSet
 from ..core.module.module_settings_dto import ModuleSettingsDTO
 
 
-class ModuleSettingsBase(
+class ClientModulesSettingsBase(
     AuthBearTokenSettings,
     SerializerJsonSettings,
     ModuleSettingsDTO,

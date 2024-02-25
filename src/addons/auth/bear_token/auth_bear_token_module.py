@@ -25,7 +25,7 @@ class AuthBearTokenModule(AuthModuleInterface):
         request: RunnerRequestDTO[TReturnedData],
         response: RunnerResponseDTO[TReturnedData],
     ) -> None:
-        settings_dto = cast(AuthBearTokenSettings, request.module_settings)
+        settings_dto = cast(AuthBearTokenSettings, request.client_modules_settings)
 
         with_unauthorized_handling = not settings_dto.disable_unauthorized_handling
 

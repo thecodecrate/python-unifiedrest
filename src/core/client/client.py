@@ -1,9 +1,11 @@
-from typing import Self
+from typing import Self, cast
 
+from ..client_modules_settings.client_modules_settings_dto import (
+    ClientModulesSettingsDTO,
+)
 from ..client_settings.client_settings_override_dto import ClientSettingsOverrideDTO
 from ..client_settings.client_settings_dto import ClientSettingsDTO
 from ..module.module_collection import ModuleCollection
-from ..module.module_settings_dto import ModuleSettingsDTO
 from ..runner.type_returned_data import TReturnedData
 from ..runner_request.runner_request_dto import RunnerRequestDTO
 from ..runner_response.runner_response_dto import RunnerResponseDTO
@@ -12,12 +14,12 @@ from ..runner_response.runner_response_dto import RunnerResponseDTO
 class Client:
     settings_dto: ClientSettingsDTO
 
-    module_settings: ModuleSettingsDTO
+    client_modules_settings: ClientModulesSettingsDTO
 
     def __init__(self, settings_dto: ClientSettingsDTO):
         self.settings_dto = settings_dto
 
-        self.module_settings = self.settings_dto.module_settings_class()
+        self.client_modules_settings = self.settings_dto.client_modules_settings_class()
 
     def with_settings(self, settings: ClientSettingsOverrideDTO) -> Self:
         cloned_settings = self.settings_dto.model_copy()
@@ -25,7 +27,7 @@ class Client:
         for field, value in settings.model_dump(exclude_none=True).items():
             setattr(cloned_settings, field, value)
 
-        return Client(settings_dto=cloned_settings)
+        return cast(Self, Client(settings_dto=cloned_settings))
 
     def clone_request_with_defaults(
         self, request: RunnerRequestDTO[TReturnedData]
@@ -34,8 +36,8 @@ class Client:
 
         cloned_request.base_url = cloned_request.base_url or self.settings_dto.base_url
 
-        cloned_request.module_settings = (
-            cloned_request.module_settings or self.module_settings
+        cloned_request.client_modules_settings = (
+            cloned_request.client_modules_settings or self.client_modules_settings
         )
 
         return cloned_request

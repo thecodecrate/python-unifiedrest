@@ -1,6 +1,6 @@
-from .base.module_settings_base import ModuleSettingsBase
 from .base.remote_action_base import RemoteActionBase, TReturnDTO
 from .base.client_base import ClientBase
+from .base.client_modules_settings_base import ClientModulesSettingsBase
 from .core.client_settings.client_settings_dto import ClientSettingsDTO
 from .core.helpers.constants.http_verbs import HttpVerbs
 from .core.runner.runner import Runner as RunnerBase
@@ -38,7 +38,7 @@ __all__ = [
     "DTO",
     "HttpVerbs",
     "MakeReturnFromOutputAction",
-    "ModuleSettingsBase",
+    "ClientModulesSettingsBase",
     "ParamsMakeReturnFromOutput",
     "RemoteActionBase",
     "RunnerBase",

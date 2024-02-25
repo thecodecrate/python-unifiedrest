@@ -2,10 +2,12 @@ from typing import Any, Optional
 
 from ..core.auth.auth_module_interface import AuthModuleInterface
 from ..core.client.client import Client
+from ..core.client_modules_settings.client_modules_settings_dto import (
+    ClientModulesSettingsDTO,
+)
 from ..core.client_settings.client_settings_dto import ClientSettingsDTO
 from ..core.driver.driver_interface import DriverInterface
 from ..core.module.module_collection import ModuleCollection
-from ..core.module.module_settings_dto import ModuleSettingsDTO
 from ..core.parser.parser_module_interface import ParserModuleInterface
 from ..core.runner.runner import Runner
 from ..core.serializer.serializer_module_interface import SerializerModuleInterface
@@ -27,7 +29,9 @@ class ClientDeclarative(Client):
 
     runner_class: type[Runner] = Runner
 
-    module_settings_class: type[ModuleSettingsDTO] = ModuleSettingsDTO
+    client_modules_settings_class: type[ClientModulesSettingsDTO] = (
+        ClientModulesSettingsDTO
+    )
 
     def __init__(self, **data: Any):
         self.settings_dto = self.make_client_settings()
@@ -43,5 +47,5 @@ class ClientDeclarative(Client):
             runner_modules=self.runner_modules,
             parser_module=self.parser_module,
             runner_class=self.runner_class,
-            module_settings_class=self.module_settings_class,
+            client_modules_settings_class=self.client_modules_settings_class,
         )

@@ -1,8 +1,10 @@
 from typing import Any, Optional, Type, TypeVar
 
+from ..core.client_modules_settings.client_modules_settings_dto import (
+    ClientModulesSettingsDTO,
+)
 from ..core.client.client import Client
 from ..core.helpers.constants.http_verbs import HttpVerbs
-from ..core.module.module_settings_dto import ModuleSettingsDTO
 from ..core.runner_request.runner_request_dto import RunnerRequestDTO
 from ..helpers.actions.core.action.action import Action
 from ..helpers.actions.core.action_dto.action_dto import ActionDTO
@@ -26,11 +28,11 @@ class RemoteAction(Action[TParamsDTO, TReturnDTO]):
     output_class: Optional[Type[Any]] = Any
     return_class: Type[TReturnDTO]
     make_input_from_params: Optional[Type[Action[TParamsDTO, Any]]] = None
-    make_return_from_output: Optional[
-        Type[MakeReturnFromOutputAction[TReturnDTO]]
-    ] = None
+    make_return_from_output: Optional[Type[MakeReturnFromOutputAction[TReturnDTO]]] = (
+        None
+    )
     client: Client
-    with_settings: Optional[ModuleSettingsDTO] = None
+    with_settings: Optional[ClientModulesSettingsDTO] = None
 
     async def run(self, params: TParamsDTO) -> TReturnDTO:
         input_dto = await self._make_input_from_params(params=params)
@@ -38,7 +40,7 @@ class RemoteAction(Action[TParamsDTO, TReturnDTO]):
         request = RunnerRequestDTO[Any](
             url=self.make_url(values_dto=params),
             method=self.method,
-            module_settings=self.with_settings,
+            client_modules_settings=self.with_settings,
             return_type=self.output_class,
             body=input_dto.model_dump_json(),
         )
